@@ -84,8 +84,12 @@ export interface Config {
   db: {
     defaultIDType: number;
   };
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    'site-metrics': SiteMetric;
+  };
+  globalsSelect: {
+    'site-metrics': SiteMetricsSelect<false> | SiteMetricsSelect<true>;
+  };
   locale: null;
   user: User & {
     collection: 'users';
@@ -284,6 +288,39 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-metrics".
+ */
+export interface SiteMetric {
+  id: number;
+  /**
+   * Propriedades atendidas
+   */
+  properties_served: number;
+  /**
+   * Produtividade aumentada (%)
+   */
+  increased_productivity: number;
+  /**
+   * Satisfação do cliente (%)
+   */
+  customer_satisfication: number;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-metrics_select".
+ */
+export interface SiteMetricsSelect<T extends boolean = true> {
+  properties_served?: T;
+  increased_productivity?: T;
+  customer_satisfication?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
