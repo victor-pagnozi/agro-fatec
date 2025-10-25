@@ -1,5 +1,7 @@
-import { Box, Typography } from '@mui/material'
+import { theme } from '@/app/config/theme'
+import { Box, Button, Typography } from '@mui/material'
 import { Leaf } from 'lucide-react'
+import Link from 'next/link'
 
 export const Header = () => {
   return (
@@ -32,8 +34,41 @@ export const Header = () => {
           AgroConsult
         </Typography>
       </Box>
-      <Box>Navegação</Box>
-      <Box>Botão Consultoria</Box>
+
+      <Box
+        sx={{
+          display: 'flex',
+          gap: 4,
+          fontSize: 16,
+          fontWeight: 600,
+          color: 'grey.400',
+          textDecoration: 'none',
+        }}
+      >
+        <Link href="/" style={{ textDecoration: 'none', color: theme.palette.grey[700] }}>
+          Home
+        </Link>
+
+        <Link href="/artigos" style={{ textDecoration: 'none', color: theme.palette.grey[700] }}>
+          Artigos
+        </Link>
+        <Link
+          href="/fale-conosco"
+          style={{ textDecoration: 'none', color: theme.palette.grey[700] }}
+        >
+          Fale Conosco
+        </Link>
+      </Box>
+
+      <Box>
+        <Button
+          variant="contained"
+          color="secondary"
+          sx={{ borderRadius: 2, textTransform: 'none', boxShadow: 'none' }}
+        >
+          Solicitar Consultoria
+        </Button>
+      </Box>
     </Box>
   )
 }
