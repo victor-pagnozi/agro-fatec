@@ -45,19 +45,43 @@ export const Header = () => {
           textDecoration: 'none',
         }}
       >
-        <Link href="/" style={{ textDecoration: 'none', color: theme.palette.grey[700] }}>
+        <Box
+          component={Link}
+          href="/"
+          sx={{
+            textDecoration: 'none',
+            color: theme.palette.grey[700],
+            '&:hover': { color: theme.palette.primary.main },
+            transition: 'color 0.2s ease',
+          }}
+        >
           Home
-        </Link>
+        </Box>
 
-        <Link href="/artigos" style={{ textDecoration: 'none', color: theme.palette.grey[700] }}>
+        <Box
+          component={Link}
+          href="/artigos"
+          sx={{
+            textDecoration: 'none',
+            color: theme.palette.grey[700],
+            '&:hover': { color: theme.palette.primary.main },
+            transition: 'color 0.2s ease',
+          }}
+        >
           Artigos
-        </Link>
-        <Link
+        </Box>
+        <Box
+          component={Link}
           href="/fale-conosco"
-          style={{ textDecoration: 'none', color: theme.palette.grey[700] }}
+          sx={{
+            textDecoration: 'none',
+            color: theme.palette.grey[700],
+            '&:hover': { color: theme.palette.primary.main },
+            transition: 'color 0.2s ease',
+          }}
         >
           Fale Conosco
-        </Link>
+        </Box>
       </Box>
 
       <Box>

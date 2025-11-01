@@ -1,8 +1,14 @@
-import { Box, Button, Card, Typography } from '@mui/material'
-import { CircleCheckBig } from 'lucide-react'
+import { Box, Button, Typography } from '@mui/material'
+import { Award, CircleCheckBig, TrendingUp, Users } from 'lucide-react'
 import Image from 'next/image'
+import { CardAppresentation } from './CardAppresentation'
+import { getPayload } from 'payload'
+import config from '@payload-config'
 
-export const Appresentation = () => {
+export const Appresentation = async () => {
+  const payload = await getPayload({ config })
+  const siteMetrics = await payload.findGlobal({ slug: 'site-metrics' })
+
   return (
     <Box
       sx={{
@@ -18,7 +24,9 @@ export const Appresentation = () => {
       <Box sx={{ paddingX: 4, display: 'flex', flexDirection: 'column', gap: 2 }}>
         <Typography variant="h1" sx={{ fontSize: 48, fontWeight: 600 }}>
           Maximize o Potencial do seu{' '}
-          <Typography sx={{ color: 'primary.main', fontSize: 48, fontWeight: 600 }} variant="h1">
+          <Typography
+            sx={{ color: 'primary.main', fontSize: 48, fontWeight: 600, lineHeight: 1.2 }}
+          >
             Agronegócio
           </Typography>
         </Typography>
@@ -76,12 +84,25 @@ export const Appresentation = () => {
           width={550}
           height={500}
           style={{ borderRadius: 18 }}
+          priority
         />
 
         <Box sx={{ marginTop: -5, marginLeft: -1, display: 'flex', gap: 2 }}>
-          <Card sx={{ padding: 2, boxShadow: 'unset' }}>teste</Card>
-          <Card sx={{ padding: 2 }}>teste</Card>
-          <Card sx={{ padding: 2 }}>teste</Card>
+          <CardAppresentation
+            description={`+${siteMetrics?.increased_productivity}%`}
+            title="Produtividade"
+            icon={<TrendingUp size={30} />}
+          />
+          <CardAppresentation
+            description={`${siteMetrics?.properties_served}+`}
+            title="Clientes"
+            icon={<Users size={30} />}
+          />
+          <CardAppresentation
+            description={`${new Date().getFullYear() - 2010} Anos`}
+            title="Experiência"
+            icon={<Award size={30} />}
+          />
         </Box>
       </Box>
     </Box>
